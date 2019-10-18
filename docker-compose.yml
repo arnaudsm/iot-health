@@ -11,8 +11,15 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:80
     volumes:
-      - ".:/code/"
+      - "./web:/code/"
     ports:
       - "80:80"
     depends_on:
       - db
+  pi:
+    container_name: pi  
+    image: python
+    volumes:
+      - "./pi:/code/"
+    ports:
+      - "81:81"
