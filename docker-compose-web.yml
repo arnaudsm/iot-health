@@ -23,3 +23,5 @@ services:
       - "./pi:/code/"
     ports:
       - "81:81"
+    expose:
+      - "80:80"

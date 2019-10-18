@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  pi:
+    container_name: pi  
+    image: python
+    volumes:
+      - "./pi:/code/"
+    ports:
+      - "81:81"
+    expose:
+      - "80:80"

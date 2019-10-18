@@ -4,7 +4,7 @@
 - `docker` and `docker-compose`
 
 # Start server 
-Run `docker-compose up -d` on the main folder
+Run `docker-compose -f ./docker-compose-dev.yml up -d` on the main folder
 
 # Contributors
  - [Arnaud de Saint Meloir](https://arnaud.at)
