@@ -8,7 +8,7 @@ services:
       - "./db:/var/lib/postgresql/"
   web:
     container_name: web
-    build: .
+    build: ./web
     command: python manage.py runserver 0.0.0.0:80
     volumes:
       - "./web:/code/"
@@ -21,7 +21,3 @@ services:
     image: python
     volumes:
       - "./pi:/code/"
-    ports:
-      - "81:81"
-    expose:
-      - "80:80"
