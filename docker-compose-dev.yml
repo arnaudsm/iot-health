@@ -6,6 +6,10 @@ services:
     image: postgres
     volumes:
       - "./db:/var/lib/postgresql/"
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
   web:
     container_name: web
     build: ./web
