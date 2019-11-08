@@ -13,3 +13,12 @@ Clear cache with : `docker-compose -f ./docker-compose-dev.yml up -d --build --f
  - Marianne Strassburger
  - Luc Couvreux
  - Pol de Font-Réaulx
+
+# Database structure 
+table : data
+
+columns:
+- epoch (int)
+- capteur_1 (float)
+- capteur_2 (float)
+- capteur_3 (float)

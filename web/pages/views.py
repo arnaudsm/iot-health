@@ -10,27 +10,29 @@ from random import randint
 from chartjs.views.lines import BaseLineChartView
 
 def index(request):
-    data = random.sample(range(1,100), 10)
+    data = random.sample(range(1,100), 7)
     context = {'data': json.dumps(data)}
 
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context, request))
 
 
-class LineChartJSONView(BaseLineChartView):
-    def get_labels(self):
-        """Return 7 labels for the x-axis."""
-        return ["January", "February", "March", "April", "May", "June", "July"]
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-    def get_providers(self):
-        """Return names of datasets."""
-        return ["Central", "Eastside", "Westside"]
 
-    def get_data(self):
-        """Return 3 datasets to plot."""
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
 
-        return [[75, 44, 92, 11, 44, 95, 35],
-                [41, 92, 18, 3, 73, 87, 92],
-                [87, 21, 94, 3, 90, 13, 65]]
+    def get(self, request, format = None):
+        data = {
+            "labels": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "datasets" : [
+                {
+            "label":"days",
+            "data": random.sample(range(1,100), 7),
+            }]
+        }   
 
-line_chart_json = LineChartJSONView.as_view()
+        return Response(data)

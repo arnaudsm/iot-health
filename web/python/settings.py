@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chartjs',
-    'pages.apps.PagesConfig', # new
+    'pages.apps.PagesConfig', 
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
