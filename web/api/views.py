@@ -12,6 +12,9 @@ from chartjs.views.lines import BaseLineChartView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+import hashlib
+
+
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
@@ -27,3 +30,18 @@ class ChartData(APIView):
         }   
 
         return Response(data)
+
+from rest_framework.decorators import api_view
+
+@api_view(['POST'])
+def hello_world(request):
+    if request.method == 'POST' and 'epoch_start' in request.data and 'epoch_end' in request.data:
+        return Response({"message": "Found it"})
+
+    if request.method == 'POST':
+        return Response({"message": "Got some data!", "data": request.data})
+    return Response({"message": "Hello, world!"})
+
+
+
+hashlib.sha224(b"Nobody inspects the spammish repetition").hexdigest()
