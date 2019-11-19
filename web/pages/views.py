@@ -20,19 +20,3 @@ def index(request):
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-
-class ChartData(APIView):
-    authentication_classes = []
-    permission_classes = []
-
-    def get(self, request, format = None):
-        data = {
-            "labels": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "datasets" : [
-                {
-            "label":"days",
-            "data": random.sample(range(1,100), 7),
-            }]
-        }   
-
-        return Response(data)

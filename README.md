@@ -6,7 +6,9 @@
 # Start server 
 Run `docker-compose -f ./docker-compose-dev.yml up -d` on the main folder
 
-Clear cache with : `docker-compose -f ./docker-compose-dev.yml up -d --build --force-recreate`
+Clear cache with : `docker-compose -f ./docker-compose-dev.yml up -d --build --force-recreate`  
+
+`docker exec -it web sh` to create a terminal inside
 
 # Contributors
  - [Arnaud de Saint Meloir](https://arnaud.at)

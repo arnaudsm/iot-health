@@ -1,41 +1,51 @@
 {% load staticfiles %}
 <html>
-    <head>
-        <title>django-chartjs line chart demo</title>
-        <!--[if lte IE 8]>
-            <script src="{% static 'js/excanvas.js' %}"></script>
-        <![endif]-->
-        <style>
-        .chart {
-            width:1000px !important;
-  height:600px !important;
-        }
-        </style>
-    </head>
-    <body>
-        <h1>Loaded in real time bro</h1>
+  <head>
+    <title>django-chartjs line chart demo</title>
+    <!--[if lte IE 8]>
+      <script src="{% static 'js/excanvas.js' %}"></script>
+    <![endif]-->
+    <style>
+      .chart {
+        width: 1000px !important;
+        height: 600px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Loaded in real time</h1>
 
-        <div class="chart">
-            <canvas id="myChart"></canvas>
-        </div>
+    <div class="chart">
+      <canvas id="myChart"></canvas>
+    </div>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-        <script type="text/javascript">
-        var data_global ;
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.10.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{% static 'js/Chart.min.js' %}"
+    ></script>
+    <script type="text/javascript">
+      var data_global ;
 
-        function updateChart(){
-            $.get('/pages/api/data/', function(data) {
-                data_global = data;
-                console.log(data);
-                var ctx = $("#myChart").get(0).getContext("2d");
-                new Chart(ctx, {
-                    type: 'line', data: data
-                });
-            });
-        }
-        updateChart();
-        window.setInterval(updateChart, 10000);
-</script>
-    </body>
+      function updateChart(){
+          $.get('/api/data/', function(data) {
+              data_global = data;
+              console.log(data);
+              var ctx = $("#myChart").get(0).getContext("2d");
+              new Chart(ctx, {
+                  type: 'line', data: data
+              });
+          });
+      }
+      updateChart();
+      window.setInterval(updateChart, 3000);
+
+      $.get('/api/hello/', function(data) {
+        console.log(data);
+      });
+    </script>
+  </body>
 </html>
