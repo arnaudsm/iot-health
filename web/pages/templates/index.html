@@ -1,10 +1,7 @@
-{% load staticfiles %}
+{% load staticfiles %} {% load static %}
 <html>
   <head>
     <title>django-chartjs line chart demo</title>
-    <!--[if lte IE 8]>
-      <script src="{% static 'js/excanvas.js' %}"></script>
-    <![endif]-->
     <style>
       .chart {
         width: 1000px !important;
@@ -19,33 +16,46 @@
       <canvas id="myChart"></canvas>
     </div>
 
-    <script
-      type="text/javascript"
-      src="http://code.jquery.com/jquery-1.10.0.min.js"
-    ></script>
+    <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
     <script
       type="text/javascript"
       src="{% static 'js/Chart.min.js' %}"
     ></script>
     <script type="text/javascript">
-      var data_global ;
+      var data_global;
 
-      function updateChart(){
-          $.get('/api/data/', function(data) {
-              data_global = data;
-              console.log(data);
-              var ctx = $("#myChart").get(0).getContext("2d");
-              new Chart(ctx, {
-                  type: 'line', data: data
-              });
-          });
-      }
-      updateChart();
-      window.setInterval(updateChart, 30000);
-
-      $.get('/api/hello/', function(data) {
-        console.log(data);
+      var ctx = $("#myChart")
+        .get(0)
+        .getContext("2d");
+      var chart = new Chart(ctx, {
+        type: "line",
+        data: null,
+        options: {
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  callback: function(value) {
+                    return new Date(value).toLocaleDateString("fr-FR");
+                  }
+                }
+              }
+            ]
+          }
+        }
       });
+
+      post_data = { epoch_start: 1576605731, epoch_end: 1576805731, sensor: 3 };
+
+      updateChart();
+      window.setInterval(updateChart, 10000);
+
+      function updateChart() {
+        $.get("/api/get/", post_data, function(data) {
+          chart.config.data = data;
+          chart.update();
+        });
+      }
     </script>
   </body>
 </html>

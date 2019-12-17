@@ -11,8 +11,12 @@ from chartjs.views.lines import BaseLineChartView
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from django.utils import timezone
+import datetime
 import hashlib
+import json
+
+from api.models import Point
 
 
 class ChartData(APIView):
@@ -34,14 +38,43 @@ class ChartData(APIView):
 from rest_framework.decorators import api_view
 
 @api_view(['POST'])
-def hello_world(request):
-    if request.method == 'POST' and 'epoch_start' in request.data and 'epoch_end' in request.data:
-        return Response({"message": "Found it"})
+def api_post(request):
+    if not request.POST.get('sensor'):
+        return Response({"error": "No sensor specified"})
 
-    if request.method == 'POST':
-        return Response({"message": "Got some data!", "data": request.data})
-    return Response({"message": "Hello, world!"})
+    if not request.POST.get('value'):
+        return Response({"error": "No value specified"})
+
+    #point = Point(time=timezone.now(), sensor=request.POST.get('value'), value=request.POST.get('sensor'))
+    #point.save()
+
+    return Response({"message": "Saved"})
+
+@api_view(['GET'])
+def api_get(request):
+    if not request.GET.get('epoch_start') or not request.GET.get('epoch_end'):
+        return Response({"error": "Bad epoch specified"})
+
+    if not request.GET.get('sensor'):
+        return Response({"error": "Sensor not specified"})
+
+    epoch_end = datetime.datetime.fromtimestamp(int(request.GET.get('epoch_end')))
+    epoch_start = datetime.datetime.fromtimestamp(int(request.GET.get('epoch_start')))
+    sensor = int(request.GET.get('sensor'));
 
 
+    data = {
+        "labels": [],
+        "datasets" : [
+            {
+            "label":"Sensor "+str(sensor),
+            "data": [],
+            }],
+        
+    }  
 
-hashlib.sha224(b"Nobody inspects the spammish repetition").hexdigest()
+    points = []
+    for point in Point.objects.filter(time__lte=epoch_end, time__gte=epoch_start, sensor=sensor):
+        data['labels'].append(1000*int(point.time.timestamp()));
+        data['datasets'][0]['data'].append(point.value);
+    return Response(data)
