@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig', 
     'rest_framework_swagger',
     'rest_framework',
-    'api'
+    'api',
+    'materializecssform'
 ]
 
 REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
