@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
                data. */
             curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/api/post");
             /* Now specify the POST data */
-            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\":" + 1 + ", \"value\":" + i + "}");
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\":" + std::to_string(1) + ", \"value\":" + std::to_string(i) + "}");
 
             /* Perform the request, res will get the return code */
             res = curl_easy_perform(curl);
