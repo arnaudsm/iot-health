@@ -45,7 +45,7 @@ def api_post(request):
     if not request.POST.get('value'):
         return Response({"error": "No value specified"})
 
-    point = Point(time=timezone.now(), sensor_id=request.POST.get('sensor_id'), value=request.POST.get('value'))
+    point = Point(sensor_id=request.POST.get('sensor_id'), value=request.POST.get('value'), time=timezone.now())
     point.save()
 
     return Response({"message": "Saved"})

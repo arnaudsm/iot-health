@@ -45,22 +45,26 @@
         }
       });
 
-      post_data = { epoch_start: 0, epoch_end: 1596805731, sensor_id: 3, value:1};
-
+    
       updateChart();
       window.setInterval(updateChart, 10000);
 
       function updateChart() {
-        $.get("/api/get/", post_data, function(data) {
+        $.get("/api/get/", 
+        { epoch_start: 0, epoch_end: 1596805731, sensor_id: 3}
+        , function(data) {
           chart.config.data = data;
           chart.update();
         });
       }
 
       function uploadTestData() {
-        $.post("/api/post/", post_data, function(data) {
-          alert("test data posted");
+        $.post("/api/post/", 
+        { epoch_start: 0, epoch_end: 1596805731, sensor_id: 3, value:Math.random()*5}
+        , function(data) {
+          //alert("test data posted");
           console.log(data);
+          updateChart();
         });
       }
     </script>
