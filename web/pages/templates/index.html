@@ -45,7 +45,7 @@
         }
       });
 
-      post_data = { epoch_start: 1576605731, epoch_end: 1576805731, sensor: 3 };
+      post_data = { epoch_start: 0, epoch_end: 1596805731, sensor_id: 3, value:1};
 
       updateChart();
       window.setInterval(updateChart, 10000);
@@ -56,6 +56,15 @@
           chart.update();
         });
       }
+
+      function uploadTestData() {
+        $.post("/api/post/", post_data, function(data) {
+          alert("test data posted");
+          console.log(data);
+        });
+      }
     </script>
   </body>
+
+  <button onclick="uploadTestData()">Post fake data</button>
 </html>
