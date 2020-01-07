@@ -1,112 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>Santé</title>
     <!-- CSS  -->
     {% load static %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{% static 'css/materialize.css'%}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{% static 'css/style.css'%}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/materialize.css'%}" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'css/style.css'%}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
-  <div class="row">
-    <div class="col s3 sidebar">
-      <div class="container">
-        <!--<div class="row center">-->
-        <div class="user-view row center">
-          <div>
-              <!--<i class="medium material-icons">face</i>-->
-            <img src="{% static 'images/john_doe.JPG' %}" width="80" height="80" alt="Profil" class="circle responsive-img">           
-          </div>
-          <span class="menu-title">John Doe</span>
-        </div>
-        <div class="center-text">
-          <ul>
-            <li><i class="material-icons icon-sidebar">home</i><a href="/index.html" class="white-text" style="font-weight: bold;">Mon dashboard</a></li>
-            <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'alerts' %}" class="white-text">Mes alertes</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col offset-s3 s9 background"> 
-      <div class="row center">
-        <div class="section">
-          <div class="container">
-            <h5 class="light flow-text border padding-title">Bonjour John, comment allez-vous aujourd'hui ?</h5>
-            </br>
-            
-            <div class="row">
-
-              <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
-                <div class="col s12 m6">
-                  <div class="card border padding-card">
-                    <div class="card-content padding-card-content">
-                      <span class="card-title light-blue-text title-card">Electrocardiogramme</span>
+    <div class="row">
+        <div class="col s3 sidebar">
+            <div class="container">
+                <!--<div class="row center">-->
+                <div class="user-view row center">
+                    <div>
+                        <!--<i class="medium material-icons">face</i>-->
+                        <img src="{% static 'images/profile-pic.JPG' %}" width="100" height="100" alt="Profil" class="circle responsive-img">
                     </div>
-                    <div class="card-image">
-                      <img src="{% static 'images/Electrocardiogramme.png' %}">
-                    </div>
-                  </div>
+                    <span class="menu-title">Emma Forrest</span>
                 </div>
-
-                <div class="col s12 m6">
-                  <div class="card border padding-card">
-                    <div class="card-content padding-card-content">
-                      <span class="card-title light-blue-text title-card">Respiration</span>
-                    </div>
-                    <div class="card-image">
-                      <img src="{% static 'images/Respiration.png' %}">
-                    </div>
-                  </div>
+                <div class="center-text">
+                    <ul>
+                        <li><i class="material-icons icon-sidebar">home</i><a href="{% url 'index' %}" class="white-text" style="font-weight: bold;">Mon dashboard</a></li>
+                        <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'alerts' %}" class="white-text">Mes alertes</a></li>
+                        <li><i class="material-icons icon-sidebar">exit_to_app</i><a href="settings.html" class="white-text">Déconnexion</a></li>
+                    </ul>
                 </div>
-              </div>
-
-              <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
-                <div class="col s12 m6">
-                  <div class="card border padding-card">
-                    <div class="card-content padding-card-content">
-                      <span class="card-title light-blue-text title-card">Pouls et Oxygène</span>
-                    </div>
-                    <div class="card-image">
-                      <img src="{% static 'images/pouls.png' %}">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col s12 m3">
-                  <div class="card border padding-card">
-                    <div class="card-content padding-card-content">
-                      <span class="card-title light-blue-text title-card">Pollution de l'air</span>
-                    </div>
-                    <div class="card-image">
-                      <img src="{% static 'images/Pollution.png' %}">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col s12 m3">
-                  <div class="card border padding-card">
-                    <div class="card-content padding-card-content">
-                      <span class="card-title light-blue-text title-card">?</span>
-                    </div>
-                    <div class="card-image">
-                      <img src="{% static 'images/graphe1.png' %}">
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="col offset-s3 s9 background">
+            <div class="row center">
+                <div class="section">
+                    <div class="container">
+                        <h5 class="light flow-text border padding-title">Bonjour Emma, comment allez-vous aujourd'hui ?</h5>
+                        </br>
+                        <div class="row">
+                            <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
+                                <div class="col s12 m6">
+                                    <div class="card border padding-card">
+                                        <div class="card-content padding-card-content">
+                                            <span class="card-title light-blue-text title-card">Electrocardiogramme</span>
+                                        </div>
+                                        <div class="card-image">
+                                            <div class="chart">
+                                                <canvas id="myChart1"></canvas>
+                                            </div>
+                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                                            <script type="text/javascript">
+                                                var data_global;
 
-      <!--Scripts-->
-      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="js/materialize.js"></script>
-      <script src="js/init.js"></script>
+                                                var ctx = $("#myChart1")
+                                                    .get(0)
+                                                    .getContext("2d");
+                                                var chart = new Chart(ctx, {
+                                                    type: "line",
+                                                    data: null,
+                                                    options: {
+                                                        scales: {
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                    callback: function(value) {
+                                                                        return new Date(value).toLocaleDateString("fr-FR");
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+                                                    }
+                                                });
+
+                                                post_data = {
+                                                    epoch_start: 1576605731,
+                                                    epoch_end: 1576805731,
+                                                    sensor: 3
+                                                };
+
+                                                updateChart();
+                                                window.setInterval(updateChart, 10000);
+
+                                                function updateChart() {
+                                                    $.get("/api/get/", post_data, function(data) {
+                                                        chart.config.data = data;
+                                                        chart.update();
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col s12 m6">
+                                    <div class="card border padding-card">
+                                        <div class="card-content padding-card-content">
+                                            <span class="card-title light-blue-text title-card">Respiration</span>
+                                        </div>
+                                        <div class="card-image">
+                                            <div class="chart">
+                                                <canvas id="myChart2"></canvas>
+                                            </div>
+                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                                            <script type="text/javascript">
+                                                var data_global;
+
+                                                var ctx = $("#myChart2")
+                                                    .get(0)
+                                                    .getContext("2d");
+                                                var chart = new Chart(ctx, {
+                                                    type: "line",
+                                                    data: null,
+                                                    options: {
+                                                        scales: {
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                    callback: function(value) {
+                                                                        return new Date(value).toLocaleDateString("fr-FR");
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+                                                    }
+                                                });
+
+                                                post_data = {
+                                                    epoch_start: 1576605731,
+                                                    epoch_end: 1576805731,
+                                                    sensor: 3
+                                                };
+
+                                                updateChart();
+                                                window.setInterval(updateChart, 10000);
+
+                                                function updateChart() {
+                                                    $.get("/api/get/", post_data, function(data) {
+                                                        chart.config.data = data;
+                                                        chart.update();
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
+                                <div class="col s12 m6">
+                                    <div class="card border padding-card">
+                                        <div class="card-content padding-card-content">
+                                            <span class="card-title light-blue-text title-card">Pouls et Oxygène</span>
+                                        </div>
+                                        <div class="card-image">
+                                            <div class="chart">
+                                                <canvas id="myChart3"></canvas>
+                                            </div>
+                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                                            <script type="text/javascript">
+                                                var data_global;
+
+                                                var ctx = $("#myChart3")
+                                                    .get(0)
+                                                    .getContext("2d");
+                                                var chart = new Chart(ctx, {
+                                                    type: "line",
+                                                    data: null,
+                                                    options: {
+                                                        scales: {
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                    callback: function(value) {
+                                                                        return new Date(value).toLocaleDateString("fr-FR");
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+                                                    }
+                                                });
+
+                                                post_data = {
+                                                    epoch_start: 1576605731,
+                                                    epoch_end: 1576805731,
+                                                    sensor: 3
+                                                };
+
+                                                updateChart();
+                                                window.setInterval(updateChart, 10000);
+
+                                                function updateChart() {
+                                                    $.get("/api/get/", post_data, function(data) {
+                                                        chart.config.data = data;
+                                                        chart.update();
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col s12 m6">
+                                    <div class="card border padding-card">
+                                        <div class="card-content padding-card-content">
+                                            <span class="card-title light-blue-text title-card">Pollution de l'air</span>
+                                        </div>
+                                        <div class="card-image">
+                                            <div class="chart">
+                                                <canvas id="myChart4"></canvas>
+                                            </div>
+                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                                            <script type="text/javascript">
+                                                var data_global;
+
+                                                var ctx = $("#myChart4")
+                                                    .get(0)
+                                                    .getContext("2d");
+                                                var chart = new Chart(ctx, {
+                                                    type: "line",
+                                                    data: null,
+                                                    options: {
+                                                        scales: {
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                    callback: function(value) {
+                                                                        return new Date(value).toLocaleDateString("fr-FR");
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+                                                    }
+                                                });
+
+                                                post_data = {
+                                                    epoch_start: 1576605731,
+                                                    epoch_end: 1576805731,
+                                                    sensor: 3
+                                                };
+
+                                                updateChart();
+                                                window.setInterval(updateChart, 10000);
+
+                                                function updateChart() {
+                                                    $.get("/api/get/", post_data, function(data) {
+                                                        chart.config.data = data;
+                                                        chart.update();
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Scripts-->
+            <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script src="js/materialize.js"></script>
+            <script src="js/init.js"></script>
+        </div>
     </div>
-  </div>
-</body >
+</body>
+
 </html>
