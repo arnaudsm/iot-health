@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
                data. */
             struct curl_slist *headers = NULL;
             //headers = curl_slist_append(headers, "Accept: application/json");
-            //headers = curl_slist_append(headers, "Content-Type: application/json");
+            //headers = curl_slist_append(headers, "Content-type: application/json");
             headers = curl_slist_append(headers, "charsets: utf-8");
 
             curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
