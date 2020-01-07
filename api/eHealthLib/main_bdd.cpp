@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include <stdio.h>
 #include <curl/curl.h>
@@ -21,19 +22,20 @@ int main(int argc, char* argv[]) {
                just as well be a https:// URL if that is what should receive the
                data. */
             struct curl_slist *headers = NULL;
-            headers = curl_slist_append(headers, "Accept: application/json");
-            headers = curl_slist_append(headers, "Content-Type: application/json");
+            //headers = curl_slist_append(headers, "Accept: application/json");
+            //headers = curl_slist_append(headers, "Content-Type: application/json");
             headers = curl_slist_append(headers, "charsets: utf-8");
 
             curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
             curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/api/post/");
             /* Now specify the POST data */
-            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\":" + std::to_string(1) + ", \"value\":" + std::to_string(i) + "}");
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\": 1, \"value\": 2}");
+	    //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "hello");
 
             /* Perform the request, res will get the return code */
             res = curl_easy_perform(curl);
 
-            cout << res;
+            cout << res << endl;
             /* always cleanup */
             curl_easy_cleanup(curl);
           }
