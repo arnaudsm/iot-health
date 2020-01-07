@@ -6,6 +6,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+    int i;
     for (i=0; i<=10; i=i+1) {
         CURL *curl;
         CURLcode res;
@@ -15,8 +16,10 @@ int main(int argc, char* argv[]) {
         if(curl)
         {
             int res = 0;
-            snprintf(curl_url, sizeof(curl_url), "http://localhost/api/post", results);
-            snprintf(curl_fields, sizeof(curl_fields),"{\"sensor_id\":\"%d\", \"value\":\"%d\"}", 1, i);
+
+            curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/api/post");
+            /* Now specify the POST data */
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\":" + 1 + ", \"value\":" + i + "}");
 
 
             struct curl_slist *headers = NULL;
@@ -30,6 +33,8 @@ int main(int argc, char* argv[]) {
             curl_easy_setopt(curl, CURLOPT_POSTFIELDS, curl_fields);
 
             res = curl_easy_perform(curl);
+
+            cout << res;
 
             curl_easy_cleanup(curl);
             curl_global_cleanup();
