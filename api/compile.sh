@@ -9,5 +9,5 @@ NAME=`echo $NAME_FILE | cut -d"." -f1`
 
 DIR_SRC="/home/pi/DEV/eHealthLib"
 
-g++ -lpthread -lrt -I${DIR_SRC} ${DIR_SRC}/cooking/arduPi/arduPi.cpp ${DIR_SRC}/eHealth.cpp $NAME.cpp -o $NAME
+g++ ${DIR_SRC}/cooking/arduPi/arduPi.cpp ${DIR_SRC}/eHealth.cpp $NAME.cpp -o $NAME -lpthread -lrt -lcurl -I${DIR_SRC}
 
