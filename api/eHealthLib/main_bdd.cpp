@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include <stdio.h>
 #include <curl/curl.h>
@@ -29,8 +30,10 @@ int main(int argc, char* argv[]) {
             curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
             curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/api/post/");
             /* Now specify the POST data */
-            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"sensor_id\": 1, \"value\": 2}");
-	    //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "hello");
+
+	    string s = "sensor_id=" + std::to_string(3) + "&value=" + std::to_string(i);
+
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, s.c_str());
 
             /* Perform the request, res will get the return code */
             res = curl_easy_perform(curl);
