@@ -21,16 +21,21 @@
                     <div>
                         <!--<i class="medium material-icons">face</i>-->
                         {% load static%}
-                        <img src="{% static '/images/Docteur.png'%}" width="100" height="100" alt="Profil" class="circle responsive-img">
+                        <img src="{% static '/images/Docteur.png'%}" width="100" height="100" alt="Profil"
+                            class="circle responsive-img">
                     </div>
                     <span class="menu-title">Dr. Lamblot</span>
                 </div>
                 <div class="center-text">
                     <ul>
-                        <li><i class="material-icons icon-sidebar">arrow_back</i><a href="{% url 'patients'%}" class="white-text">Mes patients</a></li>
-                        <li><i class="material-icons icon-sidebar">account_circle</i><a href="{% url 'profil'%}" class="white-text" style="font-weight: bold">Profil du patient</a></li>
-                        <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'patient_alerts'%}" class="white-text">Alertes du patient</a></li>
-                        <li><i class="material-icons icon-sidebar">exit_to_app</i><a href="{% url 'login'%}" class="white-text">Déconnexion</a></li>
+                        <li><i class="material-icons icon-sidebar">arrow_back</i><a href="{% url 'patients'%}"
+                                class="white-text">Mes patients</a></li>
+                        <li><i class="material-icons icon-sidebar">account_circle</i><a href="{% url 'profil'%}"
+                                class="white-text" style="font-weight: bold">Profil du patient</a></li>
+                        <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'patient_alerts'%}"
+                                class="white-text">Alertes du patient</a></li>
+                        <li><i class="material-icons icon-sidebar">exit_to_app</i><a href="{% url 'login'%}"
+                                class="white-text">Déconnexion</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,15 +51,14 @@
                             <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <div class="card-content padding-card-content">
-                                            <span class="card-title light-blue-text title-card">Electrocardiogramme</span>
-                                        </div>
+                                        <span class="card-title title-card">Electrocardiogramme</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas id="myChart1"></canvas>
                                             </div>
                                             <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
-                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                                            <script type="text/javascript"
+                                                src="{% static 'js/Chart.min.js' %}"></script>
                                             <script type="text/javascript">
                                                 var data_global;
 
@@ -68,7 +72,7 @@
                                                         scales: {
                                                             xAxes: [{
                                                                 ticks: {
-                                                                    callback: function(value) {
+                                                                    callback: function (value) {
                                                                         return new Date(value).toLocaleDateString("fr-FR");
                                                                     }
                                                                 }
@@ -87,7 +91,7 @@
                                                 window.setInterval(updateChart, 10000);
 
                                                 function updateChart() {
-                                                    $.get("/api/get/", post_data, function(data) {
+                                                    $.get("/api/get/", post_data, function (data) {
                                                         chart.config.data = data;
                                                         chart.update();
                                                     });
@@ -99,15 +103,11 @@
 
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <div class="card-content padding-card-content">
-                                            <span class="card-title light-blue-text title-card">Respiration</span>
-                                        </div>
+                                        <span class="card-title title-card">Respiration</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas id="myChart2"></canvas>
                                             </div>
-                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
-                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
                                             <script type="text/javascript">
                                                 var data_global;
 
@@ -121,7 +121,7 @@
                                                         scales: {
                                                             xAxes: [{
                                                                 ticks: {
-                                                                    callback: function(value) {
+                                                                    callback: function (value) {
                                                                         return new Date(value).toLocaleDateString("fr-FR");
                                                                     }
                                                                 }
@@ -140,7 +140,7 @@
                                                 window.setInterval(updateChart, 10000);
 
                                                 function updateChart() {
-                                                    $.get("/api/get/", post_data, function(data) {
+                                                    $.get("/api/get/", post_data, function (data) {
                                                         chart.config.data = data;
                                                         chart.update();
                                                     });
@@ -154,15 +154,11 @@
                             <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <div class="card-content padding-card-content">
-                                            <span class="card-title light-blue-text title-card">Pouls et Oxygène</span>
-                                        </div>
+                                        <span class="card-title title-card">Pouls et Oxygène</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas id="myChart3"></canvas>
                                             </div>
-                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
-                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
                                             <script type="text/javascript">
                                                 var data_global;
 
@@ -176,7 +172,7 @@
                                                         scales: {
                                                             xAxes: [{
                                                                 ticks: {
-                                                                    callback: function(value) {
+                                                                    callback: function (value) {
                                                                         return new Date(value).toLocaleDateString("fr-FR");
                                                                     }
                                                                 }
@@ -195,7 +191,7 @@
                                                 window.setInterval(updateChart, 10000);
 
                                                 function updateChart() {
-                                                    $.get("/api/get/", post_data, function(data) {
+                                                    $.get("/api/get/", post_data, function (data) {
                                                         chart.config.data = data;
                                                         chart.update();
                                                     });
@@ -207,15 +203,11 @@
 
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <div class="card-content padding-card-content">
-                                            <span class="card-title light-blue-text title-card">Pollution de l'air</span>
-                                        </div>
+                                        <span class="card-title title-card">Pollution de l'air</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas id="myChart4"></canvas>
                                             </div>
-                                            <script type="text/javascript" src="{% static 'jquery.js' %}"></script>
-                                            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
                                             <script type="text/javascript">
                                                 var data_global;
 
@@ -229,7 +221,7 @@
                                                         scales: {
                                                             xAxes: [{
                                                                 ticks: {
-                                                                    callback: function(value) {
+                                                                    callback: function (value) {
                                                                         return new Date(value).toLocaleDateString("fr-FR");
                                                                     }
                                                                 }
@@ -248,7 +240,7 @@
                                                 window.setInterval(updateChart, 10000);
 
                                                 function updateChart() {
-                                                    $.get("/api/get/", post_data, function(data) {
+                                                    $.get("/api/get/", post_data, function (data) {
                                                         chart.config.data = data;
                                                         chart.update();
                                                     });
@@ -263,10 +255,7 @@
                 </div>
             </div>
 
-            <!--  Scripts
-      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="js/materialize.js"></script>
-      <script src="js/init.js"></script>-->
+
         </div>
     </div>
 </body>

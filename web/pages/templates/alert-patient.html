@@ -21,16 +21,21 @@
                     <div>
                         <!--<i class="medium material-icons">face</i>-->
                         {% load static%}
-                        <img src="{% static '/images/Docteur.png'%}" width="100" height="100" alt="Profil" class="circle responsive-img">
+                        <img src="{% static '/images/Docteur.png'%}" width="100" height="100" alt="Profil"
+                            class="circle responsive-img">
                     </div>
                     <span class="menu-title">Dr. Lamblot</span>
                 </div>
                 <div class="center-text">
                     <ul>
-                        <li><i class="material-icons icon-sidebar">arrow_back</i><a href="{% url 'patients'%}" class="white-text">Mes patients</a></li>
-                        <li><i class="material-icons icon-sidebar">account_circle</i><a href="{% url 'profil'%}" class="white-text">Profil du patient</a></li>
-                        <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'patient_alerts'%}" class="white-text" style="font-weight: bold">Alertes du patient</a></li>
-                        <li><i class="material-icons icon-sidebar">exit_to_app</i><a href="{% url 'login'%}" class="white-text">Déconnexion</a></li>
+                        <li><i class="material-icons icon-sidebar">arrow_back</i><a href="{% url 'patients'%}"
+                                class="white-text">Mes patients</a></li>
+                        <li><i class="material-icons icon-sidebar">account_circle</i><a href="{% url 'profil'%}"
+                                class="white-text">Profil du patient</a></li>
+                        <li><i class="material-icons icon-sidebar">alarm</i><a href="{% url 'patient_alerts'%}"
+                                class="white-text" style="font-weight: bold">Alertes du patient</a></li>
+                        <li><i class="material-icons icon-sidebar">exit_to_app</i><a href="{% url 'login'%}"
+                                class="white-text">Déconnexion</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,8 +53,11 @@
                                 <div>
                                     <div class="card border padding-card">
                                         <div class="card-content">
-                                            <i class="material-icons">people</i>
-                                            <p class="card-title light-blue-text title-card">Proches</p>
+                                            <span class="card-title">
+                                                <i class="material-icons left">people</i>
+                                                Proches
+                                            </span>
+
                                             <div class="collection">
                                                 <a class="collection-item light-blue-text">Indiana Forrest</a>
                                                 <a class="collection-item light-blue-text">Alvin Planchez</a>
@@ -62,8 +70,10 @@
                                 <div>
                                     <div class="card border padding-card">
                                         <div class="card-content">
-                                            <i class="material-icons">local_hospital</i>
-                                            <p class="card-title light-blue-text title-card">Docteurs</p>
+                                            <span class="card-title">
+                                                <i class="material-icons left">local_hospital</i>
+                                                Docteurs
+                                            </span>
                                             <div class="collection">
                                                 <a class="collection-item light-blue-text">Dr. Lamblot</a>
                                                 <a class="collection-item light-blue-text">Dr. Christophe</a>
@@ -76,8 +86,10 @@
                             <div class="col s12 m6">
                                 <div class="card border padding-card">
                                     <div class="card-content">
-                                        <i class="material-icons">notifications</i>
-                                        <p class="card-title light-blue-text title-card">Alertes</p>
+                                        <span class="card-title">
+                                            <i class="material-icons left">notifications</i>
+                                            Alertes
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -89,9 +101,6 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
 </body>
 
 </html>

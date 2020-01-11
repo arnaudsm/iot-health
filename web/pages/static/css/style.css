@@ -1,95 +1,139 @@
-/* Custom Stylesheet */
-
-
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-.material-icons {
-    color: grey;
-}
-
 .container {
-    margin: 0 auto;
-    max-width: 1280px;
-    width: 90%;
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }
 
 .icon-sidebar {
-    /*positionner icon par rapport au texte*/
-    position: relative;
-    top: 11px;
-    padding-right: 0.5em;
-    font-size: 1.6em;
-    color: white;
+  /*positionner icon par rapport au texte*/
+  position: relative;
+  top: 11px;
+  padding-right: 0.5em;
+  font-size: 1.6em;
+  color: white;
 }
 
 .sidebar {
-    background-color: #17718C;
-    height: 100%;
-    position: fixed;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  background-color: #00838f;
+  height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .menu-title {
-    color: #FFFFFF;
-    font-size: 2em;
+  color: #ffffff;
+  font-size: 2em;
 }
 
 .user-view {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 .center-text {
-    position: relative;
-    top: 5em;
-    left: 1.2em;
-    line-height: 2.5em;
-    /*espacement entre les lignes*/
-    font-size: 1.8em;
+  position: relative;
+  top: 5em;
+  left: 1.2em;
+  line-height: 2.5em;
+  /*espacement entre les lignes*/
+  font-size: 1.8em;
 }
 
 .background {
-    background-color: #e8f4f8;
-    height: 100%;
-    position: fixed;
-    overflow-y: scroll;
+  background-color: #e8f4f8;
+  height: 100%;
+  position: fixed;
+  overflow-y: scroll;
 }
 
 .background-login {
-    background-color: #e8f4f8;
-    height: 100%;
+  background-color: #e8f4f8;
+  height: 100%;
 }
 
 .border {
-    border-radius: 0.4em;
-    border: none;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
-    background-color: white;
+  border-radius: 0.4em;
+  border: none;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .padding-title {
-    padding-right: 1em;
-    padding-left: 1em;
-    padding-top: 0.6em;
-    height: 2.5em;
-}
-
-.padding-card {
-    padding-right: 1em;
-    padding-left: 1em;
-    padding-bottom: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+  padding-top: 0.6em;
+  height: 2.5em;
 }
 
 .padding-card-content {
-    height: 4em;
+  height: 4em;
 }
 
 .title-card {
-    font-size: 1.3em !important;
-    font-weight: bold !important;
+  font-size: 1.3em !important;
+  font-weight: bold !important;
+}
+
+.card .btn {
+  width: 100%;
+}
+
+.card-header {
+  text-align: left;
+  font-size: 1.3em;
+  font-weight: 100;
+}
+
+/* 
+color: grey;
+margin-top: 0.1em;
+*/
+
+.card .card-title {
+  text-align: left;
+  margin-bottom: 1em;
+  margin-bottom: 1.1em !important;
+}
+
+.card .card-title>i {
+  color: grey;
+  margin-top: 0.1em;
+}
+
+.card .card-title a {
+  float: right;
+  margin-top: 0.2em;
+}
+
+.collection {
+  margin-bottom: 0;
+}
+
+span.card-title.title-card {
+  font-weight: 100 !important;
+  font-size: 1.5em !important;
+  margin: 0.4em 0em !important;
+  display: inline-block;
+}
+
+h5.light.flow-text.border.padding-title {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: black;
+  font-size: 2.5em;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin: 0em;
+}
+
+.collection-item {
+  cursor: pointer;
+}
+
+.user-view.row.center {
+  background-color: #ffffff15;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
 }
