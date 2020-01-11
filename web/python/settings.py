@@ -30,6 +30,10 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py syncdb
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,8 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework',
     'api',
-    'materializecssform'
-]
+    'materialize']
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}

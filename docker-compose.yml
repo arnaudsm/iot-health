@@ -20,8 +20,3 @@ services:
       - "80:80"
     depends_on:
       - db
-  pi:
-    container_name: pi  
-    image: python
-    volumes:
-      - "./pi:/code/"
