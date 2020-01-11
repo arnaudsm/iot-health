@@ -1,0 +1,95 @@
+/* Custom Stylesheet */
+
+
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.material-icons {
+    color: grey;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.icon-sidebar {
+    /*positionner icon par rapport au texte*/
+    position: relative;
+    top: 11px;
+    padding-right: 0.5em;
+    font-size: 1.6em;
+    color: white;
+}
+
+.sidebar {
+    background-color: #17718C;
+    height: 100%;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.menu-title {
+    color: #FFFFFF;
+    font-size: 2em;
+}
+
+.user-view {
+    margin-top: 25px;
+}
+
+.center-text {
+    position: relative;
+    top: 5em;
+    left: 1.2em;
+    line-height: 2.5em;
+    /*espacement entre les lignes*/
+    font-size: 1.8em;
+}
+
+.background {
+    background-color: #e8f4f8;
+    height: 100%;
+    position: fixed;
+    overflow-y: scroll;
+}
+
+.background-login {
+    background-color: #e8f4f8;
+    height: 100%;
+}
+
+.border {
+    border-radius: 0.4em;
+    border: none;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.padding-title {
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 0.6em;
+    height: 2.5em;
+}
+
+.padding-card {
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}
+
+.padding-card-content {
+    height: 4em;
+}
+
+.title-card {
+    font-size: 1.3em !important;
+    font-weight: bold !important;
+}

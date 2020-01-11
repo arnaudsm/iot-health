@@ -20,8 +20,7 @@ from django.urls import include, path
 from rest_framework_swagger.views import get_swagger_view
 
 urlpatterns = [
-    path('/', admin.site.urls),
-    path('pages/', include('pages.urls')),
+    path('', include('pages.urls')),
     path('api/', include('api.urls')),
     path('docs/', get_swagger_view(title='API'))
 ]
