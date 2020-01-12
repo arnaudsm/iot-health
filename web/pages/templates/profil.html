@@ -107,6 +107,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Switch -->
+            <div class="switch right">
+                <label>
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                </label>
+            </div>
             <!--<button onclick="uploadTestData()">Post fake data</button>
             <button onclick="randomData()">Generate random data</button>
 
@@ -120,6 +128,18 @@
 <script type="text/javascript">
     var charts = [];
     var demo_mode = true;
+
+    $(".switch input").on('change', function() {
+    if ($(this).prop('checked')) {
+        demo_mode = false;
+    }
+    else {
+       demo_mode = true;
+    }
+    initCharts();
+});
+
+
     var colors = ['rgb(66,133,244)', 'rgb(219,68,55)', 'rgb(244,160,0)', 'rgb(15,157,88)'];
 
     $(".myChart").each(function (index, each) {
@@ -167,8 +187,8 @@
 
     function initChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()) - 3600,
-            epoch_end: parseInt(Date.now()),
+            epoch_start: parseInt(Date.now()/1000) - 3600,
+            epoch_end: parseInt(Date.now()/1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
@@ -190,8 +210,8 @@
 
     function updateChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()) - 3600,
-            epoch_end: parseInt(Date.now()),
+            epoch_start: parseInt(Date.now()/1000) - 20 * 2 ,
+            epoch_end: parseInt(Date.now()/1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
@@ -227,11 +247,11 @@
         var labels = [];
         var data = [];
 
-        epoch_start = parseInt(Date.now()) - 20 * 2*1000;
+        epoch_start = parseInt(Date.now()) - 20 * 2 * 1000;
         new_data = 1;
 
         for (let i = 0; i < 20; i++) {
-            epoch = epoch_start + i * 2*1000;
+            epoch = epoch_start + i * 2 * 1000;
             new_data += (Math.random() - 0.5) / 5;
 
             if (new_data < 0) {
