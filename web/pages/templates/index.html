@@ -104,9 +104,10 @@
                     </div>
                 </div>
             </div>
-            <button onclick="uploadTestData()">Post fake data</button>
+            <!--<button onclick="uploadTestData()">Post fake data</button>
+            <button onclick="randomData()">Generate random data</button>
 
-            <!--Scripts-->
+            Scripts-->
         </div>
     </div>
 </body>
@@ -115,6 +116,8 @@
 <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
 <script type="text/javascript">
     var charts = [];
+    var demo_mode = true;
+    var colors = ['rgb(66,133,244)', 'rgb(219,68,55)', 'rgb(244,160,0)', 'rgb(15,157,88)'];
 
     $(".myChart").each(function (index, each) {
         var ctx = each.getContext("2d");
@@ -129,9 +132,12 @@
                     xAxes: [{
                         type: 'time',
                         time: {
-                            displayFormats: {
-                                quarter: 'h:mm a'
-                            }
+                            unit: 'second'
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxRotation: 0,
+                            minRotation: 0
                         }
                     }]
                 }
@@ -140,8 +146,8 @@
         charts.push(chart);
     });
 
-    updateCharts();
-    window.setInterval(updateCharts, 10000);
+    initCharts();
+    window.setInterval(updateCharts, 2000);
 
     function updateCharts() {
         charts.forEach(chart => {
@@ -149,36 +155,107 @@
         });
     }
 
-
-    function updateChart(chart) {
-        post_data = {
-            epoch_start: parseInt(Date.now() / 1000) - 86400,
-            epoch_end: parseInt(Date.now() / 1000),
-            sensor_id: chart.chart.canvas.dataset.sensor
-        };
-
-        $.get("/api/get/", post_data, function (data) {
-            chart.config.data = data;
-            chart.update();
+    function initCharts() {
+        charts.forEach(chart => {
+            initChart(chart);
         });
     }
 
+
+    function initChart(chart) {
+        post_data = {
+            epoch_start: parseInt(Date.now()) - 3600,
+            epoch_end: parseInt(Date.now()),
+            sensor_id: chart.chart.canvas.dataset.sensor
+        };
+
+        if (demo_mode) {
+            chart.config.data = genFakeData();
+
+            chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
+            chart.config.data.datasets[0].borderColor = colors[post_data.sensor_id - 1];
+            chart.update();
+        } else {
+            $.get("/api/get/", post_data, function (data) {
+                chart.config.data = data;
+                chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
+                chart.config.data.datasets[0].borderColor = colors[post_data.sensor_id - 1];
+                chart.update();
+            });
+        }
+    }
+
+    function updateChart(chart) {
+        post_data = {
+            epoch_start: parseInt(Date.now()) - 3600,
+            epoch_end: parseInt(Date.now()),
+            sensor_id: chart.chart.canvas.dataset.sensor
+        };
+
+        if (demo_mode) {
+            new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) / 5;
+            new_label = parseInt(Date.now());
+            if (new_data < 0) {
+                new_data += 1;
+            }
+
+            chart.data.datasets[0].data.shift()
+            chart.data.datasets[0].data.push(new_data);
+
+            chart.data.labels.shift();
+            chart.data.labels.push(new_label);
+
+            chart.update();
+        } else {
+            $.get("/api/get/", post_data, function (data) {
+                chart.config.data = data;
+                chart.update();
+            });
+        }
+    }
+
+    function transparentize(color, opacity) {
+        var alpha = opacity === undefined ? 0.5 : 1 - opacity;
+        return Color(color).alpha(alpha).rgbString();
+    }
+
+
+    function genFakeData() {
+        var labels = [];
+        var data = [];
+
+        epoch_start = parseInt(Date.now()) - 20 * 2*1000;
+        new_data = 1;
+
+        for (let i = 0; i < 20; i++) {
+            epoch = epoch_start + i * 2*1000;
+            new_data += (Math.random() - 0.5) / 5;
+
+            if (new_data < 0) {
+                new_data += 1;
+            }
+
+            labels.push(epoch);
+            data.push(new_data);
+        }
+
+        data = {
+            "labels": labels,
+            "datasets": [
+                {
+                    "label": "Sensor",
+                    "data": data,
+                }],
+
+        };
+
+        return data;
+    }
+
     function uploadTestData() {
-        try {
-            data = charts[2].data.datasets[0].data;
-            new_data = data[data.length - 1] + Math.random() - 0.5;
-        }catch(err) {
-            new_data=0.5;
-        }
-
-        if (new_data<0) {
-            new_data+=1;
-        }
-
-        console.log(new_data);
         $.post("/api/post/", {
             sensor_id: 3,
-            value: new_data
+            value: Math.random()
         }, function (data) {
             updateCharts();
         });
