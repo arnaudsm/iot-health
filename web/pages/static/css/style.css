@@ -137,3 +137,7 @@ h5.light.flow-text.border.padding-title {
   border-radius: 1em;
   cursor: pointer;
 }
+
+span.badge.new:after {
+  content: ""!important;
+}

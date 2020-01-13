@@ -49,7 +49,7 @@
                             <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <span class="card-title title-card">Electrocardiogramme</span>
+                                        <span class="card-title title-card">Respiration (/min)</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas class="myChart" data-sensor="1"></canvas>
@@ -65,7 +65,7 @@
 
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <span class="card-title title-card">Respiration</span>
+                                        <span class="card-title title-card">Electrocardiogramme (bpm)</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas class="myChart" data-sensor="2"></canvas>
@@ -79,7 +79,7 @@
                             <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <span class="card-title title-card">Pouls et Oxygène</span>
+                                        <span class="card-title title-card">Température corporelle (°C)</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas class="myChart" data-sensor="3"></canvas>
@@ -91,7 +91,7 @@
 
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <span class="card-title title-card">Pollution de l'air</span>
+                                        <span class="card-title title-card">Pollution de l'air (PM 2.5)</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas class="myChart" data-sensor="4"></canvas>
@@ -126,6 +126,7 @@
 <script type="text/javascript">
     var charts = [];
     var demo_mode = true;
+    var fake_factors = {1:15,2:50,3:37.5,4:40};
 
     $(".switch input").on('change', function() {
     if ($(this).prop('checked')) {
@@ -135,7 +136,7 @@
        demo_mode = true;
     }
     initCharts();
-});
+    });
 
 
     var colors = ['rgb(66,133,244)', 'rgb(219,68,55)', 'rgb(244,160,0)', 'rgb(15,157,88)'];
@@ -191,7 +192,7 @@
         };
 
         if (demo_mode) {
-            chart.config.data = genFakeData();
+            chart.config.data = genFakeData(post_data.sensor_id);
 
             chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
             chart.config.data.datasets[0].borderColor = colors[post_data.sensor_id - 1];
@@ -213,8 +214,13 @@
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
+        if (post_data.sensor_id==4) {
+            // post_data.epoch_start = post_data.epoch_end - 86400;
+            // get air data from http://api.waqi.info/feed/paris/?token=demo
+        }
+
         if (demo_mode) {
-            new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) / 5;
+            new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) *2;
             new_label = parseInt(Date.now());
             if (new_data < 0) {
                 new_data += 1;
@@ -241,16 +247,17 @@
     }
 
 
-    function genFakeData() {
+    function genFakeData(sensor_id) {
+        var points = 50;
         var labels = [];
         var data = [];
 
-        epoch_start = parseInt(Date.now()) - 20 * 2 * 1000;
-        new_data = 1;
+        epoch_start = parseInt(Date.now()) - points * 2 * 1000;
+        new_data = fake_factors[sensor_id];
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < points; i++) {
             epoch = epoch_start + i * 2 * 1000;
-            new_data += (Math.random() - 0.5) / 5;
+            new_data += (Math.random() - 0.5)*2;
 
             if (new_data < 0) {
                 new_data += 1;
