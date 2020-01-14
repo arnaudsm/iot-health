@@ -51,7 +51,7 @@
                             <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
-                                        <span class="card-title title-card">Respiration (/min)</span>
+                                        <span class="card-title title-card">Respiration (L/min)</span>
                                         <div class="card-image">
                                             <div class="chart">
                                                 <canvas class="myChart" data-sensor="1"></canvas>
@@ -127,7 +127,7 @@
 <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
 <script type="text/javascript">
     var charts = [];
-    var demo_mode = true;
+    var demo_mode = false;
     var fake_factors = {1:15,2:50,3:37.5,4:40};
 
     $(".switch input").on('change', function() {
@@ -171,7 +171,7 @@
     });
 
     initCharts();
-    window.setInterval(updateCharts, 2000);
+    window.setInterval(updateCharts, 4000);
 
     function updateCharts() {
         charts.forEach(chart => {
@@ -188,12 +188,12 @@
 
     function initChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()/1000) - 3600,
+            epoch_start: parseInt(Date.now()/1000) - 60,
             epoch_end: parseInt(Date.now()/1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
-        if (demo_mode) {
+        if (demo_mode || post_data.sensor_id==4) {
             chart.config.data = genFakeData(post_data.sensor_id);
 
             chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
@@ -202,16 +202,17 @@
         } else {
             $.get("/api/get/", post_data, function (data) {
                 chart.config.data = data;
-                chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
-                chart.config.data.datasets[0].borderColor = colors[post_data.sensor_id - 1];
-                chart.update();
+                chart.config.data.datasets[0].backgroundColor = transparentize(colors[chart.chart.canvas.dataset.sensor - 1]);
+                chart.config.data.datasets[0].borderColor = colors[chart.chart.canvas.dataset.sensor - 1];
+                
+chart.update();
             });
         }
     }
 
     function updateChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()/1000) - 20 * 2 ,
+            epoch_start: parseInt(Date.now()/1000) - 1 ,
             epoch_end: parseInt(Date.now()/1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
@@ -221,7 +222,7 @@
             // get air data from http://api.waqi.info/feed/paris/?token=demo
         }
 
-        if (demo_mode) {
+        if (demo_mode || post_data.sensor_id==4) {
             new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) *2;
             new_label = parseInt(Date.now());
             if (new_data < 0) {
@@ -237,8 +238,24 @@
             chart.update();
         } else {
             $.get("/api/get/", post_data, function (data) {
-                chart.config.data = data;
-                chart.update();
+             
+	
+new_data = data.datasets[0].data.slice(-1)[0];
+new_label = parseInt(Date.now());
+           if (new_data>0){
+
+            chart.data.datasets[0].data.push(new_data);          
+            chart.data.labels.push(new_label);
+
+if (chart.data.datasets[0].data.length>30) {
+          chart.data.datasets[0].data.shift();
+ chart.data.labels.shift();
+}
+
+                chart.config.data.datasets[0].backgroundColor = transparentize(colors[chart.chart.canvas.dataset.sensor - 1]);
+                chart.config.data.datasets[0].borderColor = colors[chart.chart.canvas.dataset.sensor - 1];
+		chart.update();
+}
             });
         }
     }
@@ -250,7 +267,7 @@
 
 
     function genFakeData(sensor_id) {
-        var points = 50;
+        var points = 20;
         var labels = [];
         var data = [];
 

@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
        insertIntoDbInt(electroCardio, 2);
        insertIntoDbFloat(temperature, 3);
        // wait for 0.1 sec
-       usleep(100000);
+       usleep(1000000);
     }
 }
 

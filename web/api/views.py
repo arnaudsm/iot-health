@@ -67,7 +67,7 @@ def api_get(request):
         "labels": [],
         "datasets" : [
             {
-            "label":"Sensor "+str(sensor_id),
+            "label":"Sensor "+str(sensor_id), 
             "data": [],
             }],
         
@@ -75,6 +75,7 @@ def api_get(request):
 
     points = []
     for point in Point.objects.filter(time__lte=epoch_end, time__gte=epoch_start, sensor_id=sensor_id):
-        data['labels'].append(1000*int(point.time.timestamp()));
-        data['datasets'][0]['data'].append(point.value);
+        if point.value>0 and point.value != 1:
+            data['labels'].append(1000*int(point.time.timestamp()));
+            data['datasets'][0]['data'].append(point.value);
     return Response(data)
