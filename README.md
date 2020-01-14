@@ -6,7 +6,8 @@
 # Start server 
 Run `docker-compose up -d` on the main folder
 
-Clear cache with : `docker-compose up -d --build --force-recreate`  
+# Start Sensor code
+Run : `sudo ./api/main`  
 
 `docker exec -it web sh` to create a terminal inside
 
