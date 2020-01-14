@@ -3,24 +3,25 @@
 <head>
     {% load static %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
     <link href="{% static 'css/login.style.css'%}" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
     <main class="blue lighten-2">
         <center>
-            <div class="section"></div>
-
+            <br>
             <h3 style="font-size: 4em; font-weight: 100;  text-transform: uppercase;" class="white-text">
                 3ème âge
             </h3>
-            <div class="section"></div>
 
             <div class="container">
-                <div class="z-depth-1 white lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+                <div class="z-depth-1 white lighten-4 row"
+                    style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
                     <form class="col s12" autocomplete="off" onsubmit="return redirect();">
-                        <h5 style="font-weight: 200; margin-top: 0; font-size: 2.5em; margin-bottom: 0.2em;">Connexion</h5>
+                        <h5 style="font-weight: 200; margin-top: 0; font-size: 2.5em; margin-bottom: 0.2em;">Connexion
+                        </h5>
                         <br>
                         <div class="row">
                             <div class="input-field col s12">
@@ -35,32 +36,34 @@
                                 <label for="password">Mot de passe</label>
                             </div>
                             <label style="float: right;">
-                  <a class="grey-text" href="#!"><b>Mot de passe oublié?</b></a>
-                </label>
+                                <a class="grey-text" href="#!"><b>Mot de passe oublié?</b></a>
+                            </label>
                         </div>
-                            <div class="row">
-                                <button class="btn waves-effect waves-light right blue lighten-2" type="submit"  style="padding: 0 1em;">
-                                    Login
-                                  </button>
-                                        
-                                <script type="text/javascript">
-                                    function redirect() {
-                                        var password = document.getElementById("password").value;
-                                        if (password == "1") {
-                                            window.location = "{% url 'index' %}"; // Redirecting to other page.
-                                            return false;
-                                        } else {
-                                            window.location = "{% url 'patients' %}"; // Redirecting to other page.
-                                            return false;
-                                        }
+                        <div class="row">
+                            <button class="btn waves-effect waves-light right blue lighten-2" type="submit"
+                                style="padding: 0 1em;">
+                                Login
+                            </button>
+
+                            <script type="text/javascript">
+                                function redirect() {
+                                    var password = document.getElementById("password").value;
+                                    if (password == "1") {
+                                        window.location = "{% url 'index' %}"; // Redirecting to other page.
+                                        return false;
+                                    } else {
+                                        window.location = "{% url 'patients' %}"; // Redirecting to other page.
+                                        return false;
                                     }
-                                </script>
-                            </div>
+                                }
+                            </script>
+                        </div>
                     </form>
                 </div>
             </div>
             ou <br><br>
-            <a class="waves-effect waves-light btn white black-text" style="padding: 0 1em;"><i class="material-icons left">person</i>Créer un compte</a>
+            <a class="waves-effect waves-light btn white black-text" style="padding: 0 1em;"><i
+                    class="material-icons left">person</i>Créer un compte</a>
         </center>
 
         <div class="section"></div>
@@ -68,7 +71,8 @@
     </main>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>
 
 </html>

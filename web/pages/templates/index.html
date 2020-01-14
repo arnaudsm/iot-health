@@ -14,7 +14,7 @@
 
 <body>
     <div class="row">
-        <div class="col s3 sidebar">
+        <div class="col s3 hide-on-small-only sidebar">
             <div class="container">
                 <!--<div class="row center">-->
                 <div class="user-view row center">
@@ -37,16 +37,16 @@
                 </div>
             </div>
         </div>
-        <div class="col offset-s3 s9 background">
+        <div class="col offset-m3 m9 background">
             <div class="row center">
                 <div class="section">
                     <div class="container">
                         <h5 class="light flow-text border padding-title">Bienvenue Emma.
                         </h5>
                         </br>
-                      
+
                         <div class="row">
-                            <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
+                            <div class="col s12" style="justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
                                         <span class="card-title title-card">Respiration (/min)</span>
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="col s12" style="display:flex;justify-content:center;align-items:center;">
+                            <div class="col s12" style="justify-content:center;align-items:center;">
                                 <div class="col s12 m6">
                                     <div class="card border padding-card">
                                         <span class="card-title title-card">Température corporelle (°C)</span>
@@ -126,16 +126,16 @@
 <script type="text/javascript">
     var charts = [];
     var demo_mode = false;
-    var fake_factors = {1:15,2:50,3:37.5,4:40};
+    var fake_factors = { 1: 15, 2: 50, 3: 37.5, 4: 40 };
 
-    $(".switch input").on('change', function() {
-    if ($(this).prop('checked')) {
-        demo_mode = false;
-    }
-    else {
-       demo_mode = true;
-    }
-    initCharts();
+    $(".switch input").on('change', function () {
+        if ($(this).prop('checked')) {
+            demo_mode = false;
+        }
+        else {
+            demo_mode = true;
+        }
+        initCharts();
     });
 
 
@@ -186,12 +186,12 @@
 
     function initChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()/1000) - 60,
-            epoch_end: parseInt(Date.now()/1000),
+            epoch_start: parseInt(Date.now() / 1000) - 60,
+            epoch_end: parseInt(Date.now() / 1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
-        if (demo_mode || post_data.sensor_id==4) {
+        if (demo_mode || post_data.sensor_id == 4) {
             chart.config.data = genFakeData(post_data.sensor_id);
 
             chart.config.data.datasets[0].backgroundColor = transparentize(colors[post_data.sensor_id - 1]);
@@ -202,26 +202,26 @@
                 chart.config.data = data;
                 chart.config.data.datasets[0].backgroundColor = transparentize(colors[chart.chart.canvas.dataset.sensor - 1]);
                 chart.config.data.datasets[0].borderColor = colors[chart.chart.canvas.dataset.sensor - 1];
-                
-chart.update();
+
+                chart.update();
             });
         }
     }
 
     function updateChart(chart) {
         post_data = {
-            epoch_start: parseInt(Date.now()/1000) - 1 ,
-            epoch_end: parseInt(Date.now()/1000),
+            epoch_start: parseInt(Date.now() / 1000) - 1,
+            epoch_end: parseInt(Date.now() / 1000),
             sensor_id: chart.chart.canvas.dataset.sensor
         };
 
-        if (post_data.sensor_id==4) {
+        if (post_data.sensor_id == 4) {
             // post_data.epoch_start = post_data.epoch_end - 86400;
             // get air data from http://api.waqi.info/feed/paris/?token=demo
         }
 
-        if (demo_mode || post_data.sensor_id==4) {
-            new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) *2;
+        if (demo_mode || post_data.sensor_id == 4) {
+            new_data = chart.data.datasets[0].data.slice(-1)[0] + (Math.random() - 0.5) * 2;
             new_label = parseInt(Date.now());
             if (new_data < 0) {
                 new_data += 1;
@@ -236,24 +236,24 @@ chart.update();
             chart.update();
         } else {
             $.get("/api/get/", post_data, function (data) {
-             
-	
-new_data = data.datasets[0].data.slice(-1)[0];
-new_label = parseInt(Date.now());
-           if (new_data>0){
 
-            chart.data.datasets[0].data.push(new_data);          
-            chart.data.labels.push(new_label);
 
-if (chart.data.datasets[0].data.length>30) {
-          chart.data.datasets[0].data.shift();
- chart.data.labels.shift();
-}
+                new_data = data.datasets[0].data.slice(-1)[0];
+                new_label = parseInt(Date.now());
+                if (new_data > 0) {
 
-                chart.config.data.datasets[0].backgroundColor = transparentize(colors[chart.chart.canvas.dataset.sensor - 1]);
-                chart.config.data.datasets[0].borderColor = colors[chart.chart.canvas.dataset.sensor - 1];
-		chart.update();
-}
+                    chart.data.datasets[0].data.push(new_data);
+                    chart.data.labels.push(new_label);
+
+                    if (chart.data.datasets[0].data.length > 30) {
+                        chart.data.datasets[0].data.shift();
+                        chart.data.labels.shift();
+                    }
+
+                    chart.config.data.datasets[0].backgroundColor = transparentize(colors[chart.chart.canvas.dataset.sensor - 1]);
+                    chart.config.data.datasets[0].borderColor = colors[chart.chart.canvas.dataset.sensor - 1];
+                    chart.update();
+                }
             });
         }
     }
@@ -274,7 +274,7 @@ if (chart.data.datasets[0].data.length>30) {
 
         for (let i = 0; i < points; i++) {
             epoch = epoch_start + i * 2 * 1000;
-            new_data += (Math.random() - 0.5)*2;
+            new_data += (Math.random() - 0.5) * 2;
 
             if (new_data < 0) {
                 new_data += 1;
