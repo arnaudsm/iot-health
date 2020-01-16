@@ -27,7 +27,7 @@ void insertIntoDbInt(int value, int sensor_id) {
       headers = curl_slist_append(headers, "charsets: utf-8");
 
       curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/api/post/");
+      curl_easy_setopt(curl, CURLOPT_URL, "http://iot.arnaud.at/api/post/");
 
       /* Now specify the POST data */
       string s = "sensor_id=" + std::to_string(sensor_id) + "&value=" + std::to_string(value);
