@@ -1,4 +1,4 @@
-version: '3'
+version: "2.3"
 
 services:
   db:
@@ -10,6 +10,7 @@ services:
       - POSTGRES_PASSWORD=password
     ports:
       - "5432:5432"
+    restart: always
   web:
     container_name: web
     build: ./web
@@ -20,3 +21,4 @@ services:
       - "80:80"
     depends_on:
       - db
+    restart: always
