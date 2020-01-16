@@ -112,8 +112,9 @@ margin-top: 0.1em;
 span.card-title.title-card {
   font-weight: 100 !important;
   font-size: 1.5em !important;
-  margin: 0.4em 0em !important;
+  margin: 0.6em 1.5em !important;
   display: inline-block;
+  float: left;
 }
 
 h5.light.flow-text.border.padding-title {
@@ -140,4 +141,8 @@ h5.light.flow-text.border.padding-title {
 
 span.badge.new:after {
   content: ""!important;
+}
+
+.card-title > i.material-icons {
+  margin-top: 5px;
 }
